@@ -57,9 +57,10 @@ kind: Service
 metadata:
   name: mariadb
 spec:
-  type: ClusterIP
-  clusterIP: None # Headless
+  type: NodePort  # ClusterIP를 NodePort로 변경
   selector:
     app: mariadb
   ports:
     - port: 3306
+      targetPort: 3306
+      nodePort: 32000  # 원하는 NodePort를 지정 (30000-32767 사이의 값)
